@@ -26,3 +26,12 @@
 * 101: Campfire
 * 201: Tree
 * 202: Tree w/ fruit
+
+* 301: Fence - end left
+* 302: Fence
+* 303: Fence - end right
+* 311: Fence - end left, go up
+* 312: Fence - end left, go down
+* 313: Fence - end right, go up
+* 314: Fence - end right, go down
+* 315: Fence - vertical

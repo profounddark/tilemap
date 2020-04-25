@@ -26,8 +26,11 @@ function drawMap() {
         for (let screenY = 0; screenY < 13; screenY++) {
             let mapY = (baseMap.width + mainPlayer.y - 6 + screenY) % baseMap.width;
             let mapX = (baseMap.width + mainPlayer.x - 6 + screenX) % baseMap.width;
-            let tile = baseMap.map[mapY * baseMap.width + mapX];
-            mainTiles.drawTile(myCTX, tile, screenX * mainTiles.tileSize, screenY * mainTiles.tileSize);
+            for (let layer = 0; layer < 2; layer++) {
+                let tile = baseMap.map[layer][mapY * baseMap.width + mapX];
+                if (tile) mainTiles.drawTile(myCTX, tile, screenX * mainTiles.tileSize, screenY * mainTiles.tileSize);
+            }
+            
         }
     }
     mainTiles.drawTile(myCTX, 'hero', 6*mainTiles.tileSize, 6*mainTiles.tileSize);
@@ -65,6 +68,15 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(57, 5, 1, false);
     mainTiles.addStaticTile(58, 6, 1, false);
     mainTiles.addStaticTile(59, 7, 1, false);
+
+    mainTiles.addStaticTile(301, 7, 3, false);
+    mainTiles.addStaticTile(302, 8, 3, false);
+    mainTiles.addStaticTile(303, 9, 3, false);
+    mainTiles.addStaticTile(311, 5, 3, false);
+    mainTiles.addStaticTile(312, 5, 4, false);
+    mainTiles.addStaticTile(313, 6, 3, false);
+    mainTiles.addStaticTile(314, 6, 4, false);
+    mainTiles.addStaticTile(315, 9, 4, false);
     
 
 
@@ -73,8 +85,6 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(202, 1, 2, false);
 
     mainTiles.addAnimatedTile('hero', [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
-
-    console.log(mainTiles);
 
     myCTX = document.getElementById("maincanvas").getContext('2d');
     mainTiles._lastTick = performance.now();
