@@ -1,8 +1,9 @@
 class Actor {
-    constructor(startX, startY, map, tile) {
+    constructor(startX, startY, map, tile, terrain) {
         this._X = startX;
         this._Y = startY;
         this._currentMap = map;
+        this._terrain = 'land';
 
         this._primaryTile = tile;
         
@@ -23,7 +24,7 @@ class Actor {
     _move(transX, transY) {
         let newX = (this._currentMap.width + this._X + transX) % this._currentMap.width;
         let newY = (this._currentMap.width + this._Y + transY) % this._currentMap.width;
-        if (this._currentMap.isPassible(newX, newY)) {
+        if (this._currentMap.isPassible(newX, newY, this._terrain)) {
             this._X = newX;
             this._Y = newY;
         }
@@ -45,6 +46,7 @@ class Actor {
 }
 
 class Player extends Actor {
+    /* the idea with the tempTile is that when a player boards a vehicle, it just toggles their icon to a vehicle */
     constructor(startX, startY, map, tile) {
         super(startX, startY, map, tile);
         this._tempTile = null;
@@ -59,12 +61,15 @@ class Player extends Actor {
         }
     }
 
+    /* right now, this just turns the player into a boat */
     toggleBoat() {
         if (!this._tempTile) {
             this._tempTile = 121;
+            this._terrain = 'water';
         }
         else {
             this._tempTile = null;
+            this._terrain = 'land';
         }
     }
 }

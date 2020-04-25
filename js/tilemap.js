@@ -10,8 +10,8 @@ class Tile {
     animate() {
     }
 
-    passible() {
-        return this._passible;
+    passible(terrain) {
+        return this._passible==terrain;
     }
 }
 
@@ -89,11 +89,11 @@ class TileMap {
         this.tileSize = size;
         this._lastTick = null;
     }
-    addStaticTile(code, x, y, passible = true) {
+    addStaticTile(code, x, y, passible) {
         let newTile = new StaticTile(x, y, this.tileSize, passible);
         this.tiles[code] = newTile;
     }
-    addAnimatedTile(code, xyArr, passible = true, frameRate = 500) {
+    addAnimatedTile(code, xyArr, passible, frameRate = 500) {
         let newTile = new AnimatedTile(xyArr, this.tileSize, passible, frameRate);
         this.tiles[code] = newTile;
     }
@@ -107,8 +107,8 @@ class TileMap {
             this.tiles[tile].animate(delta);
         }
     }
-    isPassible(code) {
-        return this.tiles[code].passible();
+    isPassible(code, terrain) {
+        return this.tiles[code].passible(terrain);
     }
 }
 

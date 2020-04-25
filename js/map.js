@@ -10,11 +10,23 @@ class Map {
         this._tileMap = tileMap;
     }
 
-    isPassible(x, y) {
-        for (let layer = this.depth - 1; layer >= 0; layer--){
-            let code = this.map[layer][y * this.width + x];
-            if (code) return this._tileMap.isPassible(code);
+    isPassible(x, y, terrain) {
+        /* note to self: need to figure out a better way to handle this whole thing */
+        if (terrain == 'land') {
+            for (let layer = this.depth - 1; layer >= 0; layer--){
+                let code = this.map[layer][y * this.width + x];
+                if (code) return this._tileMap.isPassible(code, terrain);
+            }
         }
+        else if (terrain == 'water') {
+            let pass = this._tileMap.isPassible(this.map[0][y * this.width + x], terrain);
+            for (let layer = 1; layer < this.depth; layer++){
+                let code = this.map[layer][y * this.width + x];
+                if (code) pass = pass && this._tileMap.isPassible(code, terrain);
+            }
+            return pass;
+        }
+ 
         
     }
 
