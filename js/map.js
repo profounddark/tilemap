@@ -1,0 +1,16 @@
+export let baseMap = [
+    'grass1',   'grass2',   'grass1',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grass2',   'grass2',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grass1',   'grass2',   'grass1',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grass1',   'grass2',   'grass1',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grass1',   'grass2',   'grass1',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grass1',   'grass2',   'grass1',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grass1',   'grass2',   'grass1',   'grass2',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa01',   'grwa02',   'grwa03',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa04',   'water1',   'grwa06',   'grass2',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa04',   'water2',   'grwa06',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa04',   'water2',   'grwa06',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa04',   'water2',   'grwa06',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa04',   'water2',   'grwa06',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+    'grwa04',   'water2',   'grwa06',   'grass1',   'grass1',   'grass2',   'grass2',   'grass1',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',   'grass2',
+];
