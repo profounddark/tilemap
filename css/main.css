@@ -1,5 +1,10 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+}
 canvas {
-    width: 720px;
+    width: 624px;
 }
 
 .spriteSheet {
