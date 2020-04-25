@@ -24,6 +24,11 @@
 
 ## Stuff
 * 101: Campfire
+
+* 111: Pier End - W
+* 112: Pier
+* 113: Pier End - E
+
 * 201: Tree
 * 202: Tree w/ fruit
 

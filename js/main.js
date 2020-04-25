@@ -68,6 +68,14 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(57, 5, 1, false);
     mainTiles.addStaticTile(58, 6, 1, false);
     mainTiles.addStaticTile(59, 7, 1, false);
+ 
+    mainTiles.addAnimatedTile(101, [{x:6, y: 2}, {x:7, y:2}, {x:8, y:2}, {x:9, y:2}], false, 100);
+
+    mainTiles.addStaticTile(111, 4, 2, true);
+    mainTiles.addStaticTile(112, 4, 3, true);
+    mainTiles.addStaticTile(113, 4, 4, true);
+    mainTiles.addStaticTile(201, 0, 2, false);
+    mainTiles.addStaticTile(202, 1, 2, false);
 
     mainTiles.addStaticTile(301, 7, 3, false);
     mainTiles.addStaticTile(302, 8, 3, false);
@@ -77,12 +85,6 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(313, 6, 3, false);
     mainTiles.addStaticTile(314, 6, 4, false);
     mainTiles.addStaticTile(315, 9, 4, false);
-    
-
-
-    mainTiles.addAnimatedTile(101, [{x:6, y: 2}, {x:7, y:2}, {x:8, y:2}, {x:9, y:2}], false, 100);
-    mainTiles.addStaticTile(201, 0, 2, false);
-    mainTiles.addStaticTile(202, 1, 2, false);
 
     mainTiles.addAnimatedTile('hero', [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
 
