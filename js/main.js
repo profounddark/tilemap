@@ -75,7 +75,7 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(111, 4, 2, 'land');
     mainTiles.addStaticTile(112, 4, 3, 'land');
     mainTiles.addStaticTile(113, 4, 4, 'land');
-    mainTiles.addStaticTile(121, 3, 3, 'land');
+    mainTiles.addStaticTile(121, 3, 3, 'land', true);
     mainTiles.addStaticTile(201, 0, 2, false);
     mainTiles.addStaticTile(202, 1, 2, false);
 
@@ -87,6 +87,8 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(313, 6, 3, false);
     mainTiles.addStaticTile(314, 6, 4, false);
     mainTiles.addStaticTile(315, 9, 4, false);
+
+    console.log(mainTiles); 
 
     mainTiles.addAnimatedTile(900, [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
 

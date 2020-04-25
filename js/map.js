@@ -2,12 +2,28 @@ class Map {
     constructor(width) {
         this.width = width;
         this.depth = 2;
+        this._itemLayer = 1;
         this.map = [];
         this._tileMap = null;
     }
 
     setTileMap(tileMap) {
         this._tileMap = tileMap;
+    }
+
+    isBoat(x, y) {
+        let code = this.map[this._itemLayer][y * this.width + x];
+        return this._tileMap.isBoat(code);
+    }
+
+    addItem(x, y, tile) {
+        this.map[this._itemLayer][y * this.width + x] = tile;
+    }
+
+    clearItem(x, y) {
+        let code = this.map[this._itemLayer][y * this.width + x];
+        this.map[this._itemLayer][y * this.width + x] = 0;
+        return code;
     }
 
     isPassible(x, y, terrain) {

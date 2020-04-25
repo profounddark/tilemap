@@ -1,7 +1,9 @@
 class Tile {
-    constructor(size, passible) {
+    constructor(size, passible, boat) {
         this.tileSize = size;
         this._passible = passible;
+        this._boat = boat;
+
     }
 
     draw() {
@@ -13,11 +15,15 @@ class Tile {
     passible(terrain) {
         return this._passible==terrain;
     }
+
+    isBoat() {
+        return this._boat;
+    }
 }
 
 class StaticTile extends Tile {
-    constructor(x, y, size, passible) {
-        super(size, passible);
+    constructor(x, y, size, passible, boat = false) {
+        super(size, passible, boat);
         // x and y are spots on the spritesheet (not pixels)
         this.sX = x * size;
         this.sY = y * size;
@@ -43,8 +49,8 @@ class StaticTile extends Tile {
 }
 
 class AnimatedTile extends Tile {
-    constructor(xyArr, size, passible, frameRate) {
-        super(size, passible);
+    constructor(xyArr, size, passible, frameRate, boat=false) {
+        super(size, passible, boat);
         this._frameArr = [];
         for (let i = 0; i < xyArr.length; i++) {
             this._frameArr[i] = { sX: xyArr[i].x * size, sY: xyArr[i].y * size };
@@ -89,12 +95,12 @@ class TileMap {
         this.tileSize = size;
         this._lastTick = null;
     }
-    addStaticTile(code, x, y, passible) {
-        let newTile = new StaticTile(x, y, this.tileSize, passible);
+    addStaticTile(code, x, y, passible, boat) {
+        let newTile = new StaticTile(x, y, this.tileSize, passible, boat);
         this.tiles[code] = newTile;
     }
-    addAnimatedTile(code, xyArr, passible, frameRate = 500) {
-        let newTile = new AnimatedTile(xyArr, this.tileSize, passible, frameRate);
+    addAnimatedTile(code, xyArr, passible, frameRate = 500, boat) {
+        let newTile = new AnimatedTile(xyArr, this.tileSize, passible, frameRate, boat);
         this.tiles[code] = newTile;
     }
     drawTile(ctx, code, x, y) {
@@ -109,6 +115,12 @@ class TileMap {
     }
     isPassible(code, terrain) {
         return this.tiles[code].passible(terrain);
+    }
+
+    isBoat(code) {
+        
+        if (code) return this.tiles[code].isBoat();
+        return false;
     }
 }
 
