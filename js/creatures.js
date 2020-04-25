@@ -1,8 +1,10 @@
 class Actor {
-    constructor(startX, startY, map) {
+    constructor(startX, startY, map, tile) {
         this._X = startX;
         this._Y = startY;
         this._currentMap = map;
+
+        this._primaryTile = tile;
         
     }
 
@@ -12,6 +14,10 @@ class Actor {
 
     get y() {
         return this._Y;
+    }
+
+    get tile() {
+        return this._primaryTile;
     }
 
     _move(transX, transY) {
@@ -38,4 +44,29 @@ class Actor {
     }
 }
 
-export { Actor }
+class Player extends Actor {
+    constructor(startX, startY, map, tile) {
+        super(startX, startY, map, tile);
+        this._tempTile = null;
+    }
+
+    get tile() {
+        if (this._tempTile) {
+            return this._tempTile;
+        }
+        else {
+            return this._primaryTile;
+        }
+    }
+
+    toggleBoat() {
+        if (!this._tempTile) {
+            this._tempTile = 121;
+        }
+        else {
+            this._tempTile = null;
+        }
+    }
+}
+
+export { Actor, Player }

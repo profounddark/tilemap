@@ -1,19 +1,20 @@
 import { baseMap } from './map.js';
 import { Keyboard } from './controller.js';
 import { TileMap } from './tilemap.js';
-import { Actor } from './creatures.js';
+import { Player } from './creatures.js';
 
 let mainKeyboard = new Keyboard;
 
 
-let mainPlayer = new Actor(8, 8, baseMap);
+let mainPlayer = new Player(8, 8, baseMap, 900);
 mainKeyboard.setCommand(mainKeyboard.LEFT, mainPlayer.moveWest, mainPlayer);
 mainKeyboard.setCommand(mainKeyboard.UP, mainPlayer.moveNorth, mainPlayer);
 mainKeyboard.setCommand(mainKeyboard.RIGHT, mainPlayer.moveEast, mainPlayer);
 mainKeyboard.setCommand(mainKeyboard.DOWN, mainPlayer.moveSouth, mainPlayer);
+mainKeyboard.setCommand(mainKeyboard.B, mainPlayer.toggleBoat, mainPlayer);
 
 
-mainKeyboard.listenForEvents([mainKeyboard.UP, mainKeyboard.DOWN, mainKeyboard.LEFT, mainKeyboard.RIGHT]);
+mainKeyboard.listenForEvents([mainKeyboard.UP, mainKeyboard.DOWN, mainKeyboard.LEFT, mainKeyboard.RIGHT, mainKeyboard.B]);
 
 
 const mainTiles = new TileMap(16);
@@ -33,7 +34,7 @@ function drawMap() {
             
         }
     }
-    mainTiles.drawTile(myCTX, 'hero', 6*mainTiles.tileSize, 6*mainTiles.tileSize);
+    mainTiles.drawTile(myCTX, mainPlayer.tile, 6*mainTiles.tileSize, 6*mainTiles.tileSize);
 }
 
 function gameTick(elapsed) {
@@ -74,6 +75,7 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(111, 4, 2, true);
     mainTiles.addStaticTile(112, 4, 3, true);
     mainTiles.addStaticTile(113, 4, 4, true);
+    mainTiles.addStaticTile(121, 3, 3, true);
     mainTiles.addStaticTile(201, 0, 2, false);
     mainTiles.addStaticTile(202, 1, 2, false);
 
@@ -86,7 +88,7 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(314, 6, 4, false);
     mainTiles.addStaticTile(315, 9, 4, false);
 
-    mainTiles.addAnimatedTile('hero', [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
+    mainTiles.addAnimatedTile(900, [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
 
     myCTX = document.getElementById("maincanvas").getContext('2d');
     mainTiles._lastTick = performance.now();

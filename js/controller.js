@@ -4,6 +4,7 @@ export class Keyboard {
         this.RIGHT = 39;
         this.UP = 38;
         this.DOWN = 40;
+        this.B = 66;
         
         this._keys = {};
         this._commands = {};   

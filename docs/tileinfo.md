@@ -29,6 +29,8 @@
 * 112: Pier
 * 113: Pier End - E
 
+* 121: Skiff
+
 * 201: Tree
 * 202: Tree w/ fruit
 
@@ -40,3 +42,7 @@
 * 313: Fence - end right, go up
 * 314: Fence - end right, go down
 * 315: Fence - vertical
+
+## Creatures
+
+* 900: Hero
