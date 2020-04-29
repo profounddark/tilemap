@@ -4,6 +4,9 @@ body {
     background-color: black;
 }
 canvas {
+    /* This fixes everything! */
+    image-rendering: pixelated;
+
     width: 624px;
 }
 
