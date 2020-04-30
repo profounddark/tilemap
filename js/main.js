@@ -23,10 +23,10 @@ baseMap.setTileMap(mainTiles);
 
 function drawMap() {
     
-    for (let screenX = 0; screenX < 13  ; screenX++) {
+    for (let screenX = 0; screenX < 19  ; screenX++) {
         for (let screenY = 0; screenY < 13; screenY++) {
             let mapY = (baseMap.width + mainPlayer.y - 6 + screenY) % baseMap.width;
-            let mapX = (baseMap.width + mainPlayer.x - 6 + screenX) % baseMap.width;
+            let mapX = (baseMap.width + mainPlayer.x - 9 + screenX) % baseMap.width;
             for (let layer = 0; layer < 2; layer++) {
                 let tile = baseMap.map[layer][mapY * baseMap.width + mapX];
                 if (tile) mainTiles.drawTile(myCTX, tile, screenX * mainTiles.tileSize, screenY * mainTiles.tileSize);
@@ -34,7 +34,7 @@ function drawMap() {
             
         }
     }
-    mainTiles.drawTile(myCTX, mainPlayer.tile, 6*mainTiles.tileSize, 6*mainTiles.tileSize);
+    mainTiles.drawTile(myCTX, mainPlayer.tile, 9*mainTiles.tileSize, 6*mainTiles.tileSize);
 }
 
 function gameTick(elapsed) {
@@ -75,7 +75,7 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(111, 4, 2, 'land');
     mainTiles.addStaticTile(112, 4, 3, 'land');
     mainTiles.addStaticTile(113, 4, 4, 'land');
-    mainTiles.addStaticTile(121, 3, 3, 'land', true);
+    mainTiles.addStaticTile(121, 3, 3, 'land', 'boat');
     mainTiles.addStaticTile(201, 0, 2, false);
     mainTiles.addStaticTile(202, 1, 2, false);
 
@@ -87,8 +87,6 @@ window.addEventListener("load", function () {
     mainTiles.addStaticTile(313, 6, 3, false);
     mainTiles.addStaticTile(314, 6, 4, false);
     mainTiles.addStaticTile(315, 9, 4, false);
-
-    console.log(mainTiles); 
 
     mainTiles.addAnimatedTile(900, [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
 

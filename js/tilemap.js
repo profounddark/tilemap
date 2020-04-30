@@ -1,8 +1,8 @@
 class Tile {
-    constructor(size, passible, boat) {
+    constructor(size, passible, craft) {
         this.tileSize = size;
         this._passible = passible;
-        this._boat = boat;
+        this._craft = craft;
 
     }
 
@@ -16,14 +16,14 @@ class Tile {
         return this._passible==terrain;
     }
 
-    isBoat() {
-        return this._boat;
+    isCraft(type) {
+        return (this._craft == type);
     }
 }
 
 class StaticTile extends Tile {
-    constructor(x, y, size, passible, boat = false) {
-        super(size, passible, boat);
+    constructor(x, y, size, passible, craft = null) {
+        super(size, passible, craft);
         // x and y are spots on the spritesheet (not pixels)
         this.sX = x * size;
         this.sY = y * size;
@@ -49,8 +49,8 @@ class StaticTile extends Tile {
 }
 
 class AnimatedTile extends Tile {
-    constructor(xyArr, size, passible, frameRate, boat=false) {
-        super(size, passible, boat);
+    constructor(xyArr, size, passible, frameRate, craft=null) {
+        super(size, passible, craft);
         this._frameArr = [];
         for (let i = 0; i < xyArr.length; i++) {
             this._frameArr[i] = { sX: xyArr[i].x * size, sY: xyArr[i].y * size };
@@ -95,12 +95,12 @@ class TileMap {
         this.tileSize = size;
         this._lastTick = null;
     }
-    addStaticTile(code, x, y, passible, boat) {
-        let newTile = new StaticTile(x, y, this.tileSize, passible, boat);
+    addStaticTile(code, x, y, passible, craft) {
+        let newTile = new StaticTile(x, y, this.tileSize, passible, craft);
         this.tiles[code] = newTile;
     }
-    addAnimatedTile(code, xyArr, passible, frameRate = 500, boat) {
-        let newTile = new AnimatedTile(xyArr, this.tileSize, passible, frameRate, boat);
+    addAnimatedTile(code, xyArr, passible, frameRate = 500, craft) {
+        let newTile = new AnimatedTile(xyArr, this.tileSize, passible, frameRate, craft);
         this.tiles[code] = newTile;
     }
     drawTile(ctx, code, x, y) {
@@ -117,9 +117,9 @@ class TileMap {
         return this.tiles[code].passible(terrain);
     }
 
-    isBoat(code) {
+    isCraft(code, type) {
         
-        if (code) return this.tiles[code].isBoat();
+        if (code) return this.tiles[code].isCraft(type);
         return false;
     }
 }

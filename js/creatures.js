@@ -63,7 +63,7 @@ class Player extends Actor {
 
     /* right now, this just turns the player into a boat */
     toggleBoat() {
-        if (!this._tempTile && this._currentMap.isBoat(this._X, this._Y)) {
+        if (!this._tempTile && this._currentMap.isCraft(this._X, this._Y, "boat")) {
             this._tempTile = this._currentMap.clearItem(this._X, this._Y);
             this._terrain = 'water';
         }
