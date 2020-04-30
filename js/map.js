@@ -1,10 +1,10 @@
 class Map {
-    constructor(width) {
+    constructor(width, tilemap) {
         this.width = width;
         this.depth = 2;
         this._itemLayer = 1;
         this.map = [];
-        this._tileMap = null;
+        this._tileMap = tilemap;
     }
 
     setTileMap(tileMap) {

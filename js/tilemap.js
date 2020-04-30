@@ -124,4 +124,52 @@ class TileMap {
     }
 }
 
-export { TileMap }
+const mainTiles = new TileMap(16);
+
+window.addEventListener("load", function () {
+    let spriteSheet = document.getElementById("sprites");
+    mainTiles.spriteSheet = spriteSheet;
+
+    mainTiles.addStaticTile(1, 0, 0, 'land');
+    mainTiles.addStaticTile(2, 1, 0, 'land');
+
+    mainTiles.addStaticTile(11, 5, 0, 'water');
+    mainTiles.addStaticTile(12, 6, 0, 'water');
+    mainTiles.addStaticTile(13, 7, 0, 'water');
+    mainTiles.addStaticTile(14, 8, 0, 'water');
+
+    mainTiles.addAnimatedTile(50, [{x:2, y:0}, {x:3, y:0}], 'water', 500);
+    mainTiles.addAnimatedTile(51, [{x:3, y:0}, {x:2, y:0}], 'water', 500);
+
+    mainTiles.addStaticTile(52, 0, 1, 'water');
+    mainTiles.addStaticTile(53, 1, 1, 'water');
+    mainTiles.addStaticTile(54, 2, 1, 'water');
+    mainTiles.addStaticTile(55, 3, 1, 'water');
+    mainTiles.addStaticTile(56, 4, 1, 'water');
+    mainTiles.addStaticTile(57, 5, 1, 'water');
+    mainTiles.addStaticTile(58, 6, 1, 'water');
+    mainTiles.addStaticTile(59, 7, 1, 'water');
+ 
+    mainTiles.addAnimatedTile(101, [{x:6, y: 2}, {x:7, y:2}, {x:8, y:2}, {x:9, y:2}], false, 100);
+
+    mainTiles.addStaticTile(111, 4, 2, 'land');
+    mainTiles.addStaticTile(112, 4, 3, 'land');
+    mainTiles.addStaticTile(113, 4, 4, 'land');
+    mainTiles.addStaticTile(121, 3, 3, 'land', 'boat');
+    mainTiles.addStaticTile(201, 0, 2, false);
+    mainTiles.addStaticTile(202, 1, 2, false);
+
+    mainTiles.addStaticTile(301, 7, 3, false);
+    mainTiles.addStaticTile(302, 8, 3, false);
+    mainTiles.addStaticTile(303, 9, 3, false);
+    mainTiles.addStaticTile(311, 5, 3, false);
+    mainTiles.addStaticTile(312, 5, 4, false);
+    mainTiles.addStaticTile(313, 6, 3, false);
+    mainTiles.addStaticTile(314, 6, 4, false);
+    mainTiles.addStaticTile(315, 9, 4, false);
+
+    mainTiles.addAnimatedTile(900, [{x:0, y:4}, {x:1, y:4}, {x:2, y:4}, {x:3, y:4}], false, 100);
+
+});
+
+export { mainTiles }
