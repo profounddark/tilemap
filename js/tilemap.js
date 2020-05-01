@@ -48,6 +48,38 @@ class StaticTile extends Tile {
     }
 }
 
+class TextureTile extends Tile {
+    constructor(xyArr, size, passible, craft=null) {
+        super(size, passible, craft);
+        // x and y are spots on the spritesheet (not pixels)
+        this._frameArr = [];
+        for (let i = 0; i < xyArr.length; i++) {
+            this._frameArr[i] = { sX: xyArr[i].x * size, sY: xyArr[i].y * size };
+        }
+    }
+    draw(ctx, sheet, x, y) {
+        // this doesn't work quite right
+        // it should be based on the actual X, Y on the map, not the X, Y in the window
+        let whichTile = (x / this.tileSize + y / this.tileSize) % this._frameArr.length;
+        ctx.drawImage(
+            // source tile sheet
+            sheet,
+            // source x, y
+            this._frameArr[whichTile].sX,
+            this._frameArr[whichTile].sY,
+            // source width, height
+            this.tileSize,
+            this.tileSize,
+            // destination x, y
+            x,
+            y,
+            // destination width, height
+            this.tileSize,
+            this.tileSize
+        );
+    }
+}
+
 class AnimatedTile extends Tile {
     constructor(xyArr, size, passible, frameRate, craft=null) {
         super(size, passible, craft);
@@ -99,6 +131,10 @@ class TileMap {
         let newTile = new StaticTile(x, y, this.tileSize, passible, craft);
         this.tiles[code] = newTile;
     }
+    addTextureTile(code, xyArr, passible, craft) {
+        let newTile = new TextureTile(xyArr, this.tileSize, passible, craft);
+        this.tiles[code] = newTile;
+    }
     addAnimatedTile(code, xyArr, passible, frameRate = 500, craft) {
         let newTile = new AnimatedTile(xyArr, this.tileSize, passible, frameRate, craft);
         this.tiles[code] = newTile;
@@ -130,8 +166,8 @@ window.addEventListener("load", function () {
     let spriteSheet = document.getElementById("sprites");
     mainTiles.spriteSheet = spriteSheet;
 
-    mainTiles.addStaticTile(1, 0, 0, 'land');
-    mainTiles.addStaticTile(2, 1, 0, 'land');
+    
+    mainTiles.addTextureTile(1, [{x:0, y:0}, {x:1, y:0}], 'land');
 
     mainTiles.addStaticTile(11, 5, 0, 'water');
     mainTiles.addStaticTile(12, 6, 0, 'water');
