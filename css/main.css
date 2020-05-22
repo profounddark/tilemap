@@ -7,8 +7,8 @@ canvas {
     /* This fixes everything! */
     image-rendering: pixelated;
 
-    width: 912px;
-    height: 624px;
+    width: 600px;
+    height: 600px;
 }
 
 .spriteSheet {
