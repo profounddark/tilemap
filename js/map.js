@@ -3,7 +3,7 @@ export class Map {
         this.height = null;
         this.width = null;
         this._tileMap;
-        this.map = [];
+        this._map = [];
         
     }
 
@@ -18,7 +18,7 @@ export class Map {
 
     setupMap(data) {
         for (let layer of data.layers) {
-            this.map.push(layer.data);
+            this._map.push(layer.data);
         }
         this.height = data.height;
         this.width = data.width;
@@ -33,23 +33,34 @@ export class Map {
         return false;
     }
 
+    get layers() {
+        return this._map.length;
+    }
+
+    getTile(x, y, layer) {
+        return this._map[layer][y * this.width + x];
+
+    }
+
+    /*
     drawTile(ctx, layer, mapX, mapY, ctxX, ctxY) {
         let location = mapY * this.width + mapX;
-        this._tileMap.drawTile(ctx, this.map[layer][location], ctxX, ctxY);
+        this._tileMap.drawTile(ctx, this._map[layer][location], ctxX, ctxY);
     }
+    */
 
     isPassible(x, y, terrain) {
         /* note to self: need to figure out a better way to handle this whole thing */
         if (terrain == 'land') {
             for (let layer = this.depth - 1; layer >= 0; layer--) {
-                let code = this.map[layer][y * this.width + x];
+                let code = this._map[layer][y * this.width + x];
                 if (code) return this._tileMap.isPassible(code, terrain);
             }
         }
         else if (terrain == 'water') {
             let pass = this._tileMap.isPassible(this.map[0][y * this.width + x], terrain);
             for (let layer = 1; layer < this.depth; layer++) {
-                let code = this.map[layer][y * this.width + x];
+                let code = this._map[layer][y * this.width + x];
                 if (code) pass = pass && this._tileMap.isPassible(code, terrain);
             }
             return pass;
