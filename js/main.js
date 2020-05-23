@@ -8,9 +8,18 @@ viewport.setTileParams(11, 11, 16);
 let mainTiles = new TileMap;
 let mainMap = new Map();
 
+let x = 15, y = 15;
+
+function testMove() {
+    x = x + Math.floor(Math.random() * 2);
+    y = y + Math.floor(Math.random() * 2);
+    window.setTimeout(testMove, 1000);
+}
+
+
 function gameTick(elapsed) {
     mainTiles.setDelta(elapsed);
-    viewport.drawAround(mainMap, 14, 14);
+    viewport.drawAround(mainMap, x, y);
     window.requestAnimationFrame(gameTick);
     
 }
@@ -19,6 +28,7 @@ function startGame() {
     console.log('game start!');
     mainTiles._lastTick = performance.now();
     window.requestAnimationFrame(gameTick);
+    testMove();
 }
 
 mainTiles.loadData('../gamedata/tilemap.json')

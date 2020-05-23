@@ -4,6 +4,8 @@ export class Map {
         this.width = null;
         this._tileMap;
         this._map = [];
+
+        this._wrap = true;
         
     }
 
@@ -38,16 +40,17 @@ export class Map {
     }
 
     getTile(x, y, layer) {
+        if (this._wrap) {
+            // if the map wraps, wrap the map
+            x = (x + this.width) % this.width;
+            y = (y + this.height) % this.height;
+        } else {
+            // otherwise, it just repeats the last row/col
+            x = Math.min(this.width - 1, Math.max(0, x));
+            y = Math.min(this.height - 1, Math.max(0, y));
+        }
         return this._map[layer][y * this.width + x];
-
     }
-
-    /*
-    drawTile(ctx, layer, mapX, mapY, ctxX, ctxY) {
-        let location = mapY * this.width + mapX;
-        this._tileMap.drawTile(ctx, this._map[layer][location], ctxX, ctxY);
-    }
-    */
 
     isPassible(x, y, terrain) {
         /* note to self: need to figure out a better way to handle this whole thing */
