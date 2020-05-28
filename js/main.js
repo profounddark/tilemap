@@ -31,7 +31,7 @@ function startGame() {
     testMove();
 }
 
-mainTiles.loadData('../gamedata/tilemap.json')
+mainTiles.loadData('./gamedata/tilemap.json')
     .then(() => {
         if (mainMap.ready && viewport) {
             startGame();
@@ -39,7 +39,7 @@ mainTiles.loadData('../gamedata/tilemap.json')
             console.log('mainTiles loaded, waiting...');
         }
     });
-mainMap.loadMap('../gamedata/testmap.json')
+mainMap.loadMap('./gamedata/testmap.json')
     .then(() => {
         viewport.tilemap = mainTiles;
         mainMap.setTileMap(mainTiles);
